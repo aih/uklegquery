@@ -29,13 +29,14 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="examples.html">xQuery Examples</a></li>
-              <li><a href="#">Version:&#160;&#160;0.0.0</a></li>
+              <li><a href="#">Version:&#160;&#160;0.0.1</a></li>
           </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.navbar .container -->
   </div>
   <div class="container ng-cloak" style="padding-top: 48px;" ng-app="ukleg" ng-cloak >
       <div style="margin-top: 30px" ng-controller="rootController" ng-cloak>
+        <div>{{test}}</div>
           <div class="row container" >
               <form ng-submit="sendXPathQuery(inputXPath)" class="form-horizontal" role="form">
                   <div class="form-group">
@@ -53,8 +54,7 @@
               <h4>xQuery to be submitted:</h4>
               <div>{{combinedQuery}}</div>
           </div>
-          <hr/>
-          <div class="row container">
+          <div class="row container" ng-hide="true">
               <form ng-submit="sendQuery(inputTextAreaModel)" class=form-horizontal" role="form">
                   <div class="form-group">
                       <label for="inputTextArea" class="col-sm-2 control-label">Advanced</label>
@@ -69,11 +69,11 @@
                   </div>
               </form>
           </div>
-              <div>{{inputTextAreaModel}}</div>
-          </div>
           <hr/>
           <h3 ng-show="xQueryResults">Results:</h3>
-          <div xr-reader="" xmlsource="xQueryResults" reader-name="xQueryResultsReader"></div>
+          <div xr-reader="" xmlsource="ukleg.xQueryResults" reader-name="xQueryResultsReader"></div>
+          <div id="stringResults" ng-show="ukleg.xQueryResults"><pre>{{ukleg.xQueryResults}}</pre></div>
+      </div>
       </div>
   </div>
   {% endraw %}
