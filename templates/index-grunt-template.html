@@ -21,10 +21,11 @@
     <script src="static/bower_components/alertify.js/lib/alertify.min.js"></script>
 <!-- endbuild -->
     </head>
-    <body>
+    <body ng-app="ukleg" ng-cloak>
     {% raw %}
     <!-- Fixed navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <span ng-controller="rootController">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation" >
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,8 +37,15 @@
           <a class="navbar-brand" href="#">UK LegQuery</a>
         </div><!--/.navbar-header -->
         <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li ng-repeat="example in examples" ng-click="setQuery(example.xpath)"><a href="#">{{example.xpath}}</a></li>
+              </ul>
+            </li>
+          </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="examples.html">xQuery Examples</a></li>
               <!-- build:version(./) -->
             <li><a href="#">Version:&#160;&#160;{{versionnumber}}</a></li>
             <!-- endbuild -->
@@ -45,8 +53,8 @@
         </div><!--/.nav-collapse -->
     </div><!--/.navbar .container -->
   </div>
-  <div class="container ng-cloak" style="padding-top: 48px;" ng-app="ukleg" ng-cloak >
-      <div style="margin-top: 30px" ng-controller="rootController" ng-cloak>
+  <div class="container " style="padding-top: 48px;"  >
+      <div style="margin-top: 30px" >
           <div class="row container" >
               <form ng-submit="sendXPathQuery(inputXPath)" class="form-horizontal" role="form">
                   <div class="form-group">
@@ -93,12 +101,14 @@
           </div>
           <hr/>
           <h3 ng-show="xQueryResults">Results:</h3>
+          <div ng-show="options.countResults && queryResults.xQueryResults">Number of Results:</div>
           <div xr-reader="" xmlsource="queryResults.xQueryResults" reader-name="xQueryResultsReader"></div>
           <div id="stringResults" ng-show="queryResults.xQueryResults"><pre>{{queryResults.xQueryResults}}</pre></div>
       </div>
       </div>
   </div>
   {% endraw %}
+  </span>
 </body>
 <script type="text/javascript" src="static/js/xreader.js"></script>
 <script type="text/javascript" src="static/js/app.js"></script>

@@ -1,5 +1,6 @@
 .entry{
     border-bottom:dotted black 1px;
+    margin-bottom:15px;
 }
 input::-webkit-input-placeholder{
   color:lightgray !important;
