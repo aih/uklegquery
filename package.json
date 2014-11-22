@@ -1,0 +1,27 @@
+{
+  "name": "uklegqueryapp",
+  "version": "0.0.0",
+  "description": "UI for xQuery of UK legislation",
+  "author": "Ari Hershowitz <arihershowitz@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aih/uklegquery.git"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-qunit": "~0.5.2",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-filerev": "^0.2.1",
+    "grunt-usemin": "^2.3.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-text-replace": "^0.3.12",
+    "grunt-bower-install-simple": "^1.0.3"
+  }
+}

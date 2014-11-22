@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="" />
+        <meta name="author" content="Ari Hershowitz" />
+        <!-- Bootstrap compatibility -->
+        <title></title>
+    <link rel="stylesheet" href="static/bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen">
+<!-- build:css(./) css/packed.css -->
+    <link rel="stylesheet" href="static/bower_components/alertify.js/themes/alertify.core.css" media="screen">
+    <link rel="stylesheet" href="static/bower_components/alertify.js/themes/alertify.default.css" media="screen">
+<!-- endbuild -->
+    <link rel="stylesheet" href="static/css/app.css" media="screen"/>
+<!-- build:js(./) js/packed.min.js -->
+    <script src="static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="static/bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="static/bower_components/angular/angular.min.js"></script>
+    <script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="static/bower_components/alertify.js/lib/alertify.min.js"></script>
+<!-- endbuild -->
+    </head>
+    <body>
+    {% raw %}
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">UK LegQuery</a>
+        </div><!--/.navbar-header -->
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="examples.html">xQuery Examples</a></li>
+              <!-- build:version(./) -->
+            <li><a href="#">Version:&#160;&#160;{{versionnumber}}</a></li>
+            <!-- endbuild -->
+          </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.navbar .container -->
+  </div>
+  <div class="container ng-cloak" style="padding-top: 48px;" ng-app="ukleg" ng-cloak >
+      <div style="margin-top: 30px" ng-controller="rootController" ng-cloak>
+          <div class="row container" >
+              <form ng-submit="sendQuery(combinedQuery)" class="form-horizontal" role="form">
+                  <div class="form-group">
+                      <label for="inputField1" class="col-sm-2 control-label">xPath to Retrieve</label>
+                      <div class="col-sm-10">
+                          <input ng-model="inputXPath" ng-change="getCombinedQuery()" type="text" class="form-control" id="inputField1" placeholder="Sample: //akn:section">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" class="btn btn-success" >Submit</button>
+                      </div>
+                  </div>
+              </form>
+              <h4>xQuery to be submitted:</h4>
+              <div>{{combinedQuery}}</div>
+          </div>
+          <hr/>
+          <div class="row container">
+              <form ng-submit="sendQuery(inputTextAreaModel)" class=form-horizontal" role="form">
+                  <div class="form-group">
+                      <label for="inputTextArea" class="col-sm-2 control-label">Advanced</label>
+                      <div class="col-sm-8">
+                          <textarea class="form-control" rows="3" id="inputTextArea" ng-model="inputTextAreaModel" placeholder="xQuery in FLOWR form" style="margin-left: -10px;"></textarea>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" class="btn btn-success" style="margin-top: 10px; margin-left: -10px;">Submit</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+              <div>{{inputTextAreaModel}}</div>
+          </div>
+          <hr/>
+          <h3 ng-show="xQueryResults">Results:</h3>
+          <div xr-reader="" xmlsource="xQueryResults" reader-name="xQueryResultsReader"></div>
+      </div>
+  </div>
+  {% endraw %}
+</body>
+<script type="text/javascript" src="static/js/xreader.js"></script>
+<script type="text/javascript" src="static/js/app.js"></script>
+</html>
