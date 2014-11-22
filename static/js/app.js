@@ -20,10 +20,13 @@ ukleg.controller('rootController', ['$scope', 'queryFactory', function ($scope, 
 }]);
 
 ukleg.factory('queryFactory', function ($http, $q){
-    var basedomain= 'http://54.172.251.13:8080';
+    var basedomain= 'http://localhost:8080';
     var basequeryurl= '/exist/rest/db/ukpga';
-    var namespaceDec='declare namespace akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0/CSD11";for $section in ';
+	var modules= 'import module namespace response = "http://exist-db.org/xquery/response";';
+    var namespaceDec='declare namespace akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0/CSD11";declare namespace response="http://exist-db.org/xquery/response";';
+	var flwrStart='for $section in ';
     var collection = 'collection(\'ukpga\')';
+	var headers = ' let $headers :=(response:set-header("Access-Control-Allow-Origin", "*"))';
     var returnPhrase = ' return <entry>{$section}</entry>';
     //Return public API
         return({
@@ -41,7 +44,7 @@ ukleg.factory('queryFactory', function ($http, $q){
                         method: "get",
                         url: basedomain + basequeryurl,
                         params: {
-                            _query: namespaceDec+collection+inputXPath+returnPhrase
+                            _query: namespaceDec+flwrStart+collection+inputXPath+headers+returnPhrase
                         }
                     });
 
