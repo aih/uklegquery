@@ -16,6 +16,8 @@ ukleg.controller('rootController', ['$scope', 'queryFactory', 'readerFactory', f
    $scope.combinedQuery = '';
    $scope.getCombinedQuery= function(){
        $scope.combinedQuery = queryFactory.getCombinedQuery($scope.inputXPath);
+       $scope.selectedQuery = _.find($scope.examples,function(example){return example.xpath===$scope.inputXPath;});
+       if($scope.selectedQuery){$scope.queryExplanation=$scope.selectedQuery.explanation;}
    };
    $scope.sendXPathQuery = function(querytext){
        initResults();
@@ -28,8 +30,8 @@ ukleg.controller('rootController', ['$scope', 'queryFactory', 'readerFactory', f
         $scope.queryResults = {};
    };
 
-   $scope.setQuery = function(path){
-        $scope.inputXPath = path;
+   $scope.setQuery = function(query){
+        $scope.inputXPath = query.xpath;
    }
 
    /**
