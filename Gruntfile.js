@@ -138,6 +138,7 @@ module.exports = function(grunt) {
   });
 
   // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-bower-install-simple');  
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-filerev');
@@ -154,6 +155,6 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['qunit','jshint']);
 
   // Build task.
-  grunt.registerTask('build', ['copy:pre', 'useminPrepare', 'concat:generated', 'cssmin:generated', 'uglify:generated', 'filerev', 'usemin', 'copy:post', 'replace:noraw']);
+  grunt.registerTask('build', ['bower-install-simple', 'copy:pre', 'useminPrepare', 'concat:generated', 'cssmin:generated', 'uglify:generated', 'filerev', 'usemin', 'copy:post', 'replace:noraw']);
 
 };

@@ -14,15 +14,19 @@ ukleg.controller('rootController', ['$scope', 'queryFactory', 'readerFactory', f
    $scope.queryResults={};
    $scope.options={howManyResults: 100};
    $scope.combinedQuery = '';
+   $scope.getSelectedQuery = function(){ return _.find($scope.examples,function(example){return example.xpath===$scope.inputXPath;});};
+   
    $scope.getCombinedQuery= function(){
        $scope.combinedQuery = queryFactory.getCombinedQuery($scope.inputXPath);
-       $scope.selectedQuery = _.find($scope.examples,function(example){return example.xpath===$scope.inputXPath;});
-       if($scope.selectedQuery){$scope.queryExplanation=$scope.selectedQuery.explanation;}
    };
    $scope.sendXPathQuery = function(querytext){
        initResults();
        alertify.log('Looking up results...');
+       $scope.queryExplanation = $scope.getSelectedQuery() ? $scope.getSelectedQuery().explanation : '';
        queryFactory.queryUKLeg(querytext, $scope.options).then(function(ajaxdata){
+       var jResults = jQuery(ajaxdata);
+       $scope.queryResults.count = jResults.attr('exist:count');
+       $scope.queryResults.totalResults = jResults.attr('exist:hits');
         $scope.queryResults.xQueryResults = ajaxdata.toString();
        }).then(function(){jQuery('.alertify-log').click();});
    };
@@ -32,6 +36,7 @@ ukleg.controller('rootController', ['$scope', 'queryFactory', 'readerFactory', f
 
    $scope.setQuery = function(query){
         $scope.inputXPath = query.xpath;
+        $scope.queryExplanation=query.explanation;
    }
 
    /**

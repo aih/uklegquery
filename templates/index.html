@@ -37,7 +37,7 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Version:&#160;&#160;0.0.4</a></li>
+              <li><a href="#">Version:&#160;&#160;0.0.5</a></li>
           </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.navbar .container -->
@@ -50,11 +50,12 @@
                       <label for="inputField1" class="col-sm-2 control-label">xPath to Retrieve</label>
                       <div class="col-sm-10">
                           <input ng-model="inputXPath" ng-change="getCombinedQuery()" type="text" class="form-control" id="inputField1" placeholder="Sample: //akn:section">
+                          <div ng-show="queryExplanation" ><label>Explanation:&#160;</label>{{queryExplanation}}</div>
                       </div>
                   </div> 
                   <div class="form-group">
                       <label class="col-sm-2 control-label">Options:</label>
-                      <div class="checkbox col-sm-2">
+                      <div class="checkbox col-sm-2" ng-hide="true">
                           <label>
                               <input type="checkbox" ng-model="options.countResults" class="ng-pristine ng-valid"> Count Results Only</label>
                       </div>
@@ -67,9 +68,8 @@
                       </div>
                   </div>
               </form>
-              <h4>xQuery to be submitted:</h4>
+              <h4 ng-show="combinedQuery">xQuery to be submitted:</h4>
               <div>{{combinedQuery}}</div>
-              <div ng-show="queryExplanation" ><label>Explanation:&#160;</label>{{queryExplanation}}</div>
           </div>
           <div class="row container" ng-hide="true">
               <form ng-submit="sendQuery(inputTextAreaModel)" class=form-horizontal" role="form">
@@ -86,11 +86,20 @@
                   </div>
               </form>
           </div>
+          <div id="resultsHeader" ng-show="queryResults.xQueryResults">
+              <h3 >Results:</h3>
+              <h4 ng-show="queryResults.count && queryResults.totalResults">Showing&#160;{{queryResults.count}}&#160;of&#160;{{queryResults.totalResults}}&#160;total</h4>
+          </div>
           <hr/>
-          <h3 ng-show="xQueryResults">Results:</h3>
-          <div ng-show="options.countResults && queryResults.xQueryResults">Number of Results:</div>
-          <div xr-reader="" xmlsource="queryResults.xQueryResults" reader-name="xQueryResultsReader"></div>
-          <div id="stringResults" ng-show="queryResults.xQueryResults"><pre>{{queryResults.xQueryResults}}</pre></div>
+          <div class="row">
+              <div class="col-sm-6">
+                  <div ng-show="options.countResults && queryResults.xQueryResults">Number of Results:</div>
+                  <div xr-reader="" xmlsource="queryResults.xQueryResults" reader-name="xQueryResultsReader"></div>
+              </div>
+              <div class="col-sm-6">
+                  <div id="stringResults" ng-show="queryResults.xQueryResults"><pre>{{queryResults.xQueryResults}}</pre></div>
+              </div>
+          </div>
       </div>
       </div>
   </div>
