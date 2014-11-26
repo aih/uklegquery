@@ -71,7 +71,7 @@
                               <input type="checkbox" ng-model="options.countResults" class="ng-pristine ng-valid"> Count Results Only</label>
                       </div>
                       <div class="col-sm-offset-2 col-sm-10">
-                          <input type="number" id="howManyResultsInput" ng-model="options.howManyResults" min="1" max="1000" value="100" placeholder="100" class="ng-pristine ng-valid ng-valid-number ng-valid-max ng-valid-min"><label class="control-label">&#160;&#160;#&#160;Results</label></div>
+                          <input type="number" id="howManyResultsInput" ng-model="options.howManyResults" min="1" max="1000" value="100" placeholder="100" class="ng-pristine ng-valid ng-valid-number ng-valid-max ng-valid-min"><label class="control-label">&#160;Max. &#160;Results</label></div>
                   </div>
                   <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">
@@ -98,16 +98,16 @@
               </form>
           </div>
           <div id="resultsHeader" ng-show="queryResults.xQueryResults">
-              <h3 >Results:</h3>
-              <h4 ng-show="queryResults.count && queryResults.totalResults">Showing&#160;{{queryResults.count}}&#160;of&#160;{{queryResults.totalResults}}&#160;total</h4>
+              <h5 ng-show="queryResults.count && queryResults.totalResults">Showing&#160;{{queryResults.count}}&#160;of&#160;{{queryResults.totalResults}}&#160;total</h5>
           </div>
-          <hr/>
+          <hr ng-show="queryResults.xQueryResults" />
           <div class="row">
-              <div class="col-sm-6">
-                  <div ng-show="options.countResults && queryResults.xQueryResults">Number of Results:</div>
+              <div class="col-sm-6" ng-show="queryResults.xQueryResults">
+                  <h4>Results</h4>
                   <div xr-reader="" xmlsource="queryResults.xQueryResults" reader-name="xQueryResultsReader"></div>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6" ng-show="queryResults.xQueryResults">
+                  <h4>Raw XML</h4>
                   <div id="stringResults" ng-show="queryResults.xQueryResults"><pre>{{queryResults.xQueryResults}}</pre></div>
               </div>
           </div>
