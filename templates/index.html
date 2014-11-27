@@ -29,6 +29,7 @@
         </div><!--/.navbar-header -->
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+            <li ><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples&#160;<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -37,7 +38,7 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Version:&#160;&#160;0.0.5</a></li>
+              <li><a href="#">Version:&#160;&#160;0.0.6</a></li>
           </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.navbar .container -->
@@ -103,6 +104,25 @@
       </div>
       </div>
   </div>
+  <!-- Modal -->
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">About&#160;UKLegQuery</h4>
+      </div>
+      <div class="modal-body">
+          <i>UKLegQuery</i> is a tool built during the GoodLaw hackathon, organized by John Sheridan of the UK Digital Service. To use this tool, add a query or select one from the examples dropdown and click 'Submit'. This will return results from an <a href="http://exist-db.org/">eXistdb</a>-backed legislative database. The tool is backed by an eXist XML database, and currently contains UK Public General Acts (Revised), from the dataset provided as part of GoodLaw.
+          Have questions or suggestions, contact Grant Vergottini (<a href="https://twitter.com/grantcv1">@grantcv1</a>) or Ari Hershowitz (<a href="https://twitter.com/arihersh">@arihersh</a>) of <a href="xcential.com">Xcential</a>.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
   {% endraw %}
   </span>
 </body>
